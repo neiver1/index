@@ -2,26 +2,16 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-//callback
-//express.request('www.google.com', function(){
-//    console.log( "hola" );
-//});
-
-let request = require('reques-promise');
-request('www.google.com')
-.then( // se ejecuta despues de la peticion 
-function(){
-    console.log("hola");
+async function suma(valor1, valor2){
+    let promesa = await new Promise((resolve,reject)=>{
+        setTimeout(resolve,500,5);  
+    });
+    console.log(valor1+valor2);
+    return valor1+valor2
 }
-).catch(//en caso de error
-function(err){
-    console.log(err);l
-}
-)
-
 
 app.get('/', (req,res)=>{
-res.send('hola estudiantes');
+res.send(`hola ${suma(3+5)}`);
 });
 
 
